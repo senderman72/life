@@ -290,40 +290,48 @@
       padding: 2px 0;
     }
 
-    /* Screensaver mode */
+    /* Screensaver mode — dark switch, everything visible, no scale changes */
     body.screensaver-active {
-      background: radial-gradient(ellipse at center, rgba(10,10,30,0.85), rgba(0,0,0,0.95));
+      background: radial-gradient(ellipse at center, rgba(15,15,35,0.92), rgba(5,5,15,0.97));
     }
 
     body.screensaver-active .card {
-      opacity: 0.5;
-      transition: opacity 2s ease;
-    }
-
-    body.screensaver-active #card-clock {
-      opacity: 1;
-      transform: scale(1.2);
+      background: linear-gradient(135deg, rgba(40, 40, 55, 0.9), rgba(30, 30, 45, 0.85));
+      color: rgba(255, 255, 255, 0.85);
+      border-color: rgba(255, 255, 255, 0.08);
       transition: all 2s ease;
-      animation: ambient-glow 8s ease-in-out infinite;
     }
 
-    body.screensaver-active #sidebar {
-      opacity: 0.4;
-    }
+    /* Clock stays same size, just switches to light text */
+    body.screensaver-active .clock-time { color: rgba(255, 255, 255, 0.95); }
+    body.screensaver-active .clock-date { color: rgba(255, 255, 255, 0.5); }
 
-    @keyframes ambient-glow {
-      0%, 100% { box-shadow: 0 0 30px rgba(100, 140, 255, 0.08); }
-      50%      { box-shadow: 0 0 60px rgba(100, 140, 255, 0.15); }
-    }
-
-    @keyframes gentle-float {
-      0%, 100% { transform: translateY(0px); }
-      50%      { transform: translateY(-4px); }
-    }
-
-    body.screensaver-active .card:not(#card-clock) {
-      animation: gentle-float 12s ease-in-out infinite;
-    }
+    /* All text switches to light variants */
+    body.screensaver-active .card-label { color: rgba(255, 255, 255, 0.4); }
+    body.screensaver-active .card-placeholder { color: rgba(255, 255, 255, 0.3); }
+    body.screensaver-active .weather-temp { color: rgba(255, 255, 255, 0.9); }
+    body.screensaver-active .weather-condition { color: rgba(255, 255, 255, 0.6); }
+    body.screensaver-active .weather-details,
+    body.screensaver-active .weather-range,
+    body.screensaver-active .weather-sun { color: rgba(255, 255, 255, 0.4); }
+    body.screensaver-active .calendar-time { color: rgba(255, 255, 255, 0.4); }
+    body.screensaver-active .calendar-summary { color: rgba(255, 255, 255, 0.75); }
+    body.screensaver-active .strava-stats { color: rgba(255, 255, 255, 0.8); }
+    body.screensaver-active .strava-comparison { color: rgba(255, 255, 255, 0.4); }
+    body.screensaver-active .strava-bar-last { background: rgba(255, 255, 255, 0.15); }
+    body.screensaver-active .football-team,
+    body.screensaver-active .football-vs { color: rgba(255, 255, 255, 0.8); }
+    body.screensaver-active .football-status { color: rgba(255, 255, 255, 0.4); }
+    body.screensaver-active .football-live-score { color: #F87171; }
+    body.screensaver-active .football-status-live { color: #F87171; }
+    body.screensaver-active .standings-rank { color: rgba(255, 255, 255, 0.35); }
+    body.screensaver-active .standings-team { color: rgba(255, 255, 255, 0.7); }
+    body.screensaver-active .standings-pts { color: rgba(255, 255, 255, 0.8); }
+    body.screensaver-active .standings-gd { color: rgba(255, 255, 255, 0.35); }
+    body.screensaver-active .standings-row { border-bottom-color: rgba(255, 255, 255, 0.05); }
+    body.screensaver-active .football-match { border-bottom-color: rgba(255, 255, 255, 0.05); }
+    body.screensaver-active .calendar-event { border-bottom-color: rgba(255, 255, 255, 0.05); }
+    body.screensaver-active .calendar-current { border-left-color: #60A5FA; }
 
     /* Goal flash */
     .goal-flash-green { background: #EAF3DE !important; color: #27500A !important; transition: none !important; }

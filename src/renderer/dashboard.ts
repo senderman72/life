@@ -37,6 +37,14 @@ function init(): void {
   if (standingsContainer) {
     disposers.push(initStandings(standingsContainer))
   }
+
+  // Screensaver mode
+  disposers.push(window.myday.onScreensaverActivate(() => {
+    document.body.classList.add('screensaver-active')
+  }))
+  disposers.push(window.myday.onScreensaverDeactivate(() => {
+    document.body.classList.remove('screensaver-active')
+  }))
 }
 
 document.addEventListener('DOMContentLoaded', init)

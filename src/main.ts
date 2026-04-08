@@ -3,6 +3,7 @@ import * as path from 'path'
 import { loadConfig } from './config'
 import { ensureStorageDir } from './storage'
 import { startScheduler } from './scheduler'
+import { ScreensaverController } from './screensaver'
 
 let mainWindow: BrowserWindow | null = null
 
@@ -40,9 +41,9 @@ function createWindow(): void {
     },
   })
 
-  // 'floating' level keeps window above desktop but below modal dialogs.
-  // True desktop-level (type: 'desktop') blocks all input — revisit with native module if needed.
-  mainWindow.setAlwaysOnTop(true, 'floating')
+  // Normal level with negative offset: sits above the desktop wallpaper but below app windows.
+  // Screensaver elevates to 'screen-saver' level on idle.
+  mainWindow.setAlwaysOnTop(true, 'normal', -1)
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
   mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
@@ -50,7 +51,12 @@ function createWindow(): void {
 
   startScheduler(mainWindow, config)
 
+  // Screensaver: idle detection + window level toggling
+  const screensaver = new ScreensaverController()
+  screensaver.start(mainWindow, config.screensaver)
+
   mainWindow.on('closed', () => {
+    screensaver.stop()
     mainWindow = null
   })
 }
