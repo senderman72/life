@@ -1,4 +1,4 @@
-import type { WeatherData, CalendarEvent, StravaData, Fixture, GoalEvent, PomodoroTick } from '../types'
+import type { WeatherData, CalendarEvent, StravaData, Fixture, GoalEvent, Standing } from '../types'
 
 interface MyDayAPI {
   onWeatherUpdate(cb: (data: WeatherData) => void): () => void
@@ -6,11 +6,9 @@ interface MyDayAPI {
   onStravaUpdate(cb: (data: StravaData) => void): () => void
   onFootballUpdate(cb: (data: Fixture[]) => void): () => void
   onGoalEvent(cb: (data: GoalEvent) => void): () => void
-  onPomodoroTick(cb: (data: PomodoroTick) => void): () => void
+  onStandingsUpdate(cb: (data: Standing[]) => void): () => void
   onScreensaverActivate(cb: () => void): () => void
   onScreensaverDeactivate(cb: () => void): () => void
-  togglePomodoro(): void
-  resetPomodoro(): void
   setClickable(clickable: boolean): void
 }
 

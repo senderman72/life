@@ -3,6 +3,7 @@ import type { AppConfig } from './types'
 import { fetchWeather } from './fetchers/weather'
 import { fetchCalendar } from './fetchers/calendar'
 import { fetchStrava } from './fetchers/strava'
+import { FootballPoller } from './fetchers/football'
 
 const THIRTY_MINUTES = 30 * 60 * 1000
 const FIFTEEN_MINUTES = 15 * 60 * 1000
@@ -44,4 +45,8 @@ export function startScheduler(win: BrowserWindow, config: AppConfig): void {
   }
   fetchAndSendStrava()
   setInterval(fetchAndSendStrava, FIFTEEN_MINUTES)
+
+  // Football: adaptive polling (self-managed intervals)
+  const footballPoller = new FootballPoller()
+  footballPoller.start(win, config)
 }

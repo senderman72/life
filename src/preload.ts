@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
-import type { WeatherData, CalendarEvent, StravaData, Fixture, GoalEvent, PomodoroTick } from './types'
+import type { WeatherData, CalendarEvent, StravaData, Fixture, GoalEvent, Standing } from './types'
 
 function onChannel<T>(channel: string, cb: (data: T) => void): () => void {
   const handler = (_: IpcRendererEvent, data: T) => cb(data)
@@ -19,10 +19,8 @@ contextBridge.exposeInMainWorld('myday', {
   onStravaUpdate: (cb: (data: StravaData) => void) => onChannel('strava:update', cb),
   onFootballUpdate: (cb: (data: Fixture[]) => void) => onChannel('football:update', cb),
   onGoalEvent: (cb: (data: GoalEvent) => void) => onChannel('football:goal', cb),
-  onPomodoroTick: (cb: (data: PomodoroTick) => void) => onChannel('pomodoro:tick', cb),
+  onStandingsUpdate: (cb: (data: Standing[]) => void) => onChannel('football:standings', cb),
   onScreensaverActivate: (cb: () => void) => onSignal('screensaver:activate', cb),
   onScreensaverDeactivate: (cb: () => void) => onSignal('screensaver:deactivate', cb),
-  togglePomodoro: () => ipcRenderer.send('pomodoro:toggle'),
-  resetPomodoro: () => ipcRenderer.send('pomodoro:reset'),
   setClickable: (clickable: boolean) => ipcRenderer.send('window:set-clickable', clickable),
 })

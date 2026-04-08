@@ -14,11 +14,8 @@
     "redirectUri": "http://localhost:3000/oauth/callback"
   },
   "football": {
-    "apiKey": "",
-    "premierLeagueId": 39,
-    "allsvenskanId": 113,
-    "favoriteTeams": ["Malmö FF", "Liverpool"],
-    "malmöFFTeamId": 371
+    "apiToken": "",
+    "favoriteTeams": ["Liverpool"]
   },
   "pomodoro": {
     "workMinutes": 25,

@@ -82,7 +82,18 @@ export interface GoalEvent {
   readonly fixtureId: number
   readonly scoringTeam: string
   readonly isFavorite: boolean
+  readonly againstFavorite: boolean
   readonly newScore: FixtureScore
+}
+
+export interface Standing {
+  readonly rank: number
+  readonly teamName: string
+  readonly points: number
+  readonly wins: number
+  readonly draws: number
+  readonly losses: number
+  readonly goalDifference: number
 }
 
 // Screensaver
@@ -110,11 +121,8 @@ export interface AppConfig {
     readonly redirectUri: string
   }
   readonly football: {
-    readonly apiKey: string
-    readonly premierLeagueId: number
-    readonly allsvenskanId: number
+    readonly apiToken: string
     readonly favoriteTeams: readonly string[]
-    readonly malmöFFTeamId: number
   }
   readonly pomodoro: {
     readonly workMinutes: number

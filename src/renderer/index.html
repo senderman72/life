@@ -19,18 +19,36 @@
 
     #app {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto auto;
+      grid-template-columns: 220px 1fr;
       gap: 25px;
       padding: 30px;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 65%;
-      max-width: 960px;
+      width: 75%;
+      max-width: 1100px;
       max-height: 100vh;
       overflow-y: auto;
+    }
+
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    #card-standings {
+      flex: 1;
+      border-radius: 18px;
+      overflow-y: auto;
+    }
+
+    #main-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 25px;
     }
 
     .card {
@@ -67,14 +85,9 @@
       letter-spacing: -0.1px;
     }
 
-    /* Weather takes 2 columns */
+    /* Weather spans full width of main cards */
     #card-weather {
-      grid-column: span 2;
-    }
-
-    /* Pomodoro is a single column */
-    #card-pomodoro {
-      grid-column: span 1;
+      grid-column: 1 / -1;
     }
 
     /* Calendar spans full width */
@@ -89,6 +102,49 @@
 
     #card-football {
       grid-column: span 2;
+    }
+
+    /* Standings sidebar */
+    .standings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 12px;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.04);
+    }
+    .standings-row:last-child { border-bottom: none; }
+    .standings-rank {
+      width: 20px;
+      color: #86868b;
+      font-weight: 500;
+    }
+    .standings-team {
+      flex: 1;
+      color: #1d1d1f;
+      margin-left: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .standings-team.is-favorite { font-weight: 600; }
+    .standings-pts {
+      width: 30px;
+      text-align: right;
+      font-weight: 600;
+      color: #1d1d1f;
+    }
+    .standings-gd {
+      width: 30px;
+      text-align: right;
+      font-size: 11px;
+      color: #86868b;
+    }
+    .standings-record {
+      width: 55px;
+      text-align: right;
+      font-size: 10px;
+      color: #aeaeb2;
     }
 
     .card-label {
@@ -189,6 +245,51 @@
       margin-top: 2px;
     }
 
+    /* Football card */
+    .football-match {
+      padding: 6px 0;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+      border-radius: 8px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .football-match:last-child { border-bottom: none; }
+    .football-teams {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .football-team { flex: 1; color: #1d1d1f; }
+    .football-team:last-child { text-align: right; }
+    .football-vs {
+      font-weight: 600;
+      color: #1d1d1f;
+      min-width: 50px;
+      text-align: center;
+    }
+    .football-live-score { color: #D92D20; }
+    .football-status {
+      font-size: 11px;
+      color: #86868b;
+      text-align: center;
+      margin-top: 2px;
+    }
+    .football-status-live {
+      color: #D92D20;
+      font-weight: 600;
+    }
+    .football-empty {
+      font-size: 13px;
+      color: #aeaeb2;
+    }
+    .football-standings { margin-top: 8px; }
+    .football-standing-row {
+      font-size: 12px;
+      color: #6e6e73;
+      padding: 2px 0;
+    }
+
     /* Screensaver mode */
     body.screensaver-active {
       background: radial-gradient(ellipse at center, rgba(10,10,30,0.85), rgba(0,0,0,0.95));
@@ -206,8 +307,8 @@
       animation: ambient-glow 8s ease-in-out infinite;
     }
 
-    body.screensaver-active #card-pomodoro {
-      opacity: 0.9;
+    body.screensaver-active #sidebar {
+      opacity: 0.4;
     }
 
     @keyframes ambient-glow {
@@ -233,26 +334,30 @@
 </head>
 <body>
   <div id="app">
-    <div id="card-clock" class="card"></div>
-    <div id="card-weather" class="card">
-      <div class="card-label">Weather</div>
-      <div class="card-placeholder">Waiting for data...</div>
+    <div id="sidebar">
+      <div id="card-standings" class="card">
+        <div class="card-label">Premier League</div>
+        <div class="card-placeholder">Loading table...</div>
+      </div>
     </div>
-    <div id="card-pomodoro" class="card">
-      <div class="card-label">Pomodoro</div>
-      <div class="card-placeholder">Ready</div>
-    </div>
-    <div id="card-calendar" class="card">
-      <div class="card-label">Calendar</div>
-      <div class="card-placeholder">Waiting for data...</div>
-    </div>
-    <div id="card-strava" class="card">
-      <div class="card-label">Training</div>
-      <div class="card-placeholder">Waiting for data...</div>
-    </div>
-    <div id="card-football" class="card">
-      <div class="card-label">Football</div>
-      <div class="card-placeholder">Waiting for data...</div>
+    <div id="main-cards">
+      <div id="card-clock" class="card"></div>
+      <div id="card-weather" class="card">
+        <div class="card-label">Weather</div>
+        <div class="card-placeholder">Waiting for data...</div>
+      </div>
+      <div id="card-calendar" class="card">
+        <div class="card-label">Calendar</div>
+        <div class="card-placeholder">Waiting for data...</div>
+      </div>
+      <div id="card-strava" class="card">
+        <div class="card-label">Training</div>
+        <div class="card-placeholder">Waiting for data...</div>
+      </div>
+      <div id="card-football" class="card">
+        <div class="card-label">Matches</div>
+        <div class="card-placeholder">Waiting for data...</div>
+      </div>
     </div>
   </div>
   <script src="dashboard.js"></script>
