@@ -1,0 +1,38 @@
+{
+  "location": {
+    "city": "Malmö",
+    "latitude": 55.605,
+    "longitude": 13.0038
+  },
+  "strava": {
+    "clientId": "",
+    "clientSecret": "",
+    "refreshToken": ""
+  },
+  "google": {
+    "clientId": "",
+    "clientSecret": "",
+    "redirectUri": "http://localhost:3000/oauth/callback"
+  },
+  "football": {
+    "apiKey": "",
+    "premierLeagueId": 39,
+    "allsvenskanId": 113,
+    "favoriteTeams": ["Malmö FF", "Liverpool"],
+    "malmöFFTeamId": 371
+  },
+  "pomodoro": {
+    "workMinutes": 25,
+    "breakMinutes": 5
+  },
+  "window": {
+    "position": "bottom-left",
+    "refreshIntervalMinutes": 5
+  },
+  "screensaver": {
+    "enabled": true,
+    "idleMinutes": 5,
+    "dimCards": true,
+    "ambientAnimation": true
+  }
+}
