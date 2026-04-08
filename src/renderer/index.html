@@ -6,17 +6,165 @@
   <title>Life</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
       background: transparent;
       color: #1a1a1a;
       overflow: hidden;
       width: 100vw;
       height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
+
+    #app {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 16px;
+      padding: 24px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      max-width: 720px;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      transition: opacity 0.3s ease;
+    }
+
+    /* Clock spans full width */
+    #card-clock {
+      grid-column: 1 / -1;
+    }
+
+    .clock-time {
+      font-size: 48px;
+      font-weight: 200;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .clock-date {
+      font-size: 16px;
+      font-weight: 400;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    /* Weather takes 2 columns */
+    #card-weather {
+      grid-column: span 2;
+    }
+
+    /* Pomodoro is a single column */
+    #card-pomodoro {
+      grid-column: span 1;
+    }
+
+    /* Calendar spans full width */
+    #card-calendar {
+      grid-column: 1 / -1;
+    }
+
+    /* Strava and football side by side */
+    #card-strava {
+      grid-column: span 1;
+    }
+
+    #card-football {
+      grid-column: span 2;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .card-placeholder {
+      font-size: 13px;
+      color: #bbb;
+    }
+
+    /* Screensaver mode */
+    body.screensaver-active {
+      background: radial-gradient(ellipse at center, rgba(10,10,30,0.85), rgba(0,0,0,0.95));
+    }
+
+    body.screensaver-active .card {
+      opacity: 0.5;
+      transition: opacity 2s ease;
+    }
+
+    body.screensaver-active #card-clock {
+      opacity: 1;
+      transform: scale(1.2);
+      transition: all 2s ease;
+      animation: ambient-glow 8s ease-in-out infinite;
+    }
+
+    body.screensaver-active #card-pomodoro {
+      opacity: 0.9;
+    }
+
+    @keyframes ambient-glow {
+      0%, 100% { box-shadow: 0 0 30px rgba(100, 140, 255, 0.08); }
+      50%      { box-shadow: 0 0 60px rgba(100, 140, 255, 0.15); }
+    }
+
+    @keyframes gentle-float {
+      0%, 100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+
+    body.screensaver-active .card:not(#card-clock) {
+      animation: gentle-float 12s ease-in-out infinite;
+    }
+
+    /* Goal flash */
+    .goal-flash-green { background: #EAF3DE !important; color: #27500A !important; transition: none !important; }
+    .goal-flash-red   { background: #FCEBEB !important; color: #A32D2D !important; transition: none !important; }
+    .goal-flash-amber { background: #FAEEDA !important; color: #633806 !important; transition: none !important; }
+    .fading { transition: background 1s ease, color 1s ease !important; }
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div id="card-clock" class="card"></div>
+    <div id="card-weather" class="card">
+      <div class="card-label">Weather</div>
+      <div class="card-placeholder">Waiting for data...</div>
+    </div>
+    <div id="card-pomodoro" class="card">
+      <div class="card-label">Pomodoro</div>
+      <div class="card-placeholder">Ready</div>
+    </div>
+    <div id="card-calendar" class="card">
+      <div class="card-label">Calendar</div>
+      <div class="card-placeholder">Waiting for data...</div>
+    </div>
+    <div id="card-strava" class="card">
+      <div class="card-label">Training</div>
+      <div class="card-placeholder">Waiting for data...</div>
+    </div>
+    <div id="card-football" class="card">
+      <div class="card-label">Football</div>
+      <div class="card-placeholder">Waiting for data...</div>
+    </div>
+  </div>
+  <script src="dashboard.js"></script>
 </body>
 </html>

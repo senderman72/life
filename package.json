@@ -4,7 +4,7 @@
   "description": "Desktop wallpaper app for macOS — calendar, weather, running stats, football scores, Pomodoro timer",
   "main": "dist/main.js",
   "scripts": {
-    "build": "tsc && cp src/renderer/index.html dist/renderer/index.html",
+    "build": "tsc && esbuild src/renderer/dashboard.ts --bundle --platform=browser --outfile=dist/renderer/dashboard.js && cp src/renderer/index.html dist/renderer/index.html",
     "start": "npm run build && electron .",
     "dev": "tsc -w",
     "test": "vitest run",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/node": "^25.5.2",
     "electron": "^41.2.0",
+    "esbuild": "^0.28.0",
     "typescript": "^6.0.2",
     "vitest": "^3.2.4"
   }
