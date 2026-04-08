@@ -10,7 +10,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
       background: transparent;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.9);
       overflow: hidden;
       width: 100vw;
       height: 100vh;
@@ -52,16 +52,17 @@
     }
 
     .card {
-      background: linear-gradient(135deg, rgba(245, 245, 250, 0.97), rgba(235, 235, 245, 0.95));
-      border: 0.5px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(40px) saturate(150%);
+      -webkit-backdrop-filter: blur(40px) saturate(150%);
+      border: 0.5px solid rgba(255, 255, 255, 0.12);
       border-radius: 18px;
       padding: 20px;
       box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.04),
-        0 4px 16px rgba(0, 0, 0, 0.06),
-        0 12px 40px rgba(0, 0, 0, 0.04),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
-      transition: opacity 0.3s ease;
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
     }
 
     /* Clock spans full width */
@@ -74,13 +75,13 @@
       font-weight: 200;
       letter-spacing: -1.5px;
       line-height: 1.1;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.95);
     }
 
     .clock-date {
       font-size: 15px;
       font-weight: 400;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.5);
       margin-top: 6px;
       letter-spacing: -0.1px;
     }
@@ -116,12 +117,12 @@
     .standings-row:last-child { border-bottom: none; }
     .standings-rank {
       width: 20px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.35);
       font-weight: 500;
     }
     .standings-team {
       flex: 1;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.75);
       margin-left: 6px;
       white-space: nowrap;
       overflow: hidden;
@@ -132,19 +133,19 @@
       width: 30px;
       text-align: right;
       font-weight: 600;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.85);
     }
     .standings-gd {
       width: 30px;
       text-align: right;
       font-size: 11px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.35);
     }
     .standings-record {
       width: 55px;
       text-align: right;
       font-size: 10px;
-      color: #aeaeb2;
+      color: rgba(255, 255, 255, 0.3);
     }
 
     .card-label {
@@ -152,13 +153,13 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.6px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.4);
       margin-bottom: 10px;
     }
 
     .card-placeholder {
       font-size: 13px;
-      color: #aeaeb2;
+      color: rgba(255, 255, 255, 0.3);
     }
 
     /* Weather card */
@@ -168,13 +169,13 @@
       gap: 8px;
     }
     .weather-icon { font-size: 30px; }
-    .weather-temp { font-size: 38px; font-weight: 200; letter-spacing: -1px; }
-    .weather-condition { font-size: 14px; color: #6e6e73; margin-top: 4px; }
+    .weather-temp { font-size: 38px; font-weight: 200; letter-spacing: -1px; color: rgba(255, 255, 255, 0.9); }
+    .weather-condition { font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-top: 4px; }
     .weather-details, .weather-range, .weather-sun {
       display: flex;
       gap: 14px;
       font-size: 12px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.4);
       margin-top: 5px;
     }
 
@@ -183,39 +184,39 @@
       display: flex;
       gap: 12px;
       padding: 6px 0;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
       align-items: baseline;
     }
     .calendar-event:last-child { border-bottom: none; }
     .calendar-time {
       font-size: 12px;
       font-weight: 500;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.4);
       min-width: 100px;
       flex-shrink: 0;
     }
     .calendar-summary {
       font-size: 13px;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.8);
     }
     .calendar-current {
-      border-left: 3px solid #007aff;
+      border-left: 3px solid #60A5FA;
       padding-left: 9px;
       margin-left: -12px;
     }
     .calendar-current .calendar-summary { font-weight: 600; }
-    .calendar-next .calendar-summary { color: #6e6e73; }
-    .calendar-allday .calendar-time { color: #007aff; font-weight: 600; }
+    .calendar-next .calendar-summary { color: rgba(255, 255, 255, 0.5); }
+    .calendar-allday .calendar-time { color: #60A5FA; font-weight: 600; }
     .calendar-empty {
       font-size: 13px;
-      color: #aeaeb2;
+      color: rgba(255, 255, 255, 0.3);
       padding: 4px 0;
     }
 
     /* Strava card */
     .strava-stats {
       font-size: 14px;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.85);
       margin-bottom: 10px;
     }
     .strava-bars {
@@ -230,10 +231,10 @@
       transition: width 0.6s ease;
     }
     .strava-bar-last {
-      background: #e5e5ea;
+      background: rgba(255, 255, 255, 0.15);
     }
     .strava-bar-this {
-      background: #86868b;
+      background: rgba(255, 255, 255, 0.3);
     }
     .strava-classification {
       font-size: 13px;
@@ -241,14 +242,14 @@
     }
     .strava-comparison {
       font-size: 11px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.4);
       margin-top: 2px;
     }
 
     /* Football card */
     .football-match {
       padding: 6px 0;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
       border-radius: 8px;
       transition: background 0.3s ease, color 0.3s ease;
     }
@@ -260,33 +261,33 @@
       gap: 8px;
       font-size: 13px;
     }
-    .football-team { flex: 1; color: #1d1d1f; }
+    .football-team { flex: 1; color: rgba(255, 255, 255, 0.8); }
     .football-team:last-child { text-align: right; }
     .football-vs {
       font-weight: 600;
-      color: #1d1d1f;
+      color: rgba(255, 255, 255, 0.9);
       min-width: 50px;
       text-align: center;
     }
-    .football-live-score { color: #D92D20; }
+    .football-live-score { color: #F87171; }
     .football-status {
       font-size: 11px;
-      color: #86868b;
+      color: rgba(255, 255, 255, 0.4);
       text-align: center;
       margin-top: 2px;
     }
     .football-status-live {
-      color: #D92D20;
+      color: #F87171;
       font-weight: 600;
     }
     .football-empty {
       font-size: 13px;
-      color: #aeaeb2;
+      color: rgba(255, 255, 255, 0.3);
     }
     .football-standings { margin-top: 8px; }
     .football-standing-row {
       font-size: 12px;
-      color: #6e6e73;
+      color: rgba(255, 255, 255, 0.5);
       padding: 2px 0;
     }
 
