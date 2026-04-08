@@ -1,7 +1,7 @@
 import { powerMonitor, BrowserWindow } from 'electron'
 import type { ScreensaverConfig } from './types'
 
-const POLL_INTERVAL = 5000 // check idle every 5 seconds
+const POLL_INTERVAL = 5000
 
 export class ScreensaverController {
   private pollInterval: ReturnType<typeof setInterval> | null = null
@@ -32,21 +32,15 @@ export class ScreensaverController {
 
   private activate(win: BrowserWindow): void {
     this.isActive = true
-    // Elevate above all windows
+    // Elevate above everything for screensaver mode
     win.setAlwaysOnTop(true, 'screen-saver')
-    // Enable mouse events so any click can wake
-    win.setIgnoreMouseEvents(false)
-    // Notify renderer
     win.webContents.send('screensaver:activate')
   }
 
   private deactivate(win: BrowserWindow): void {
     this.isActive = false
-    // Restore to normal level (above wallpaper, below app windows)
-    win.setAlwaysOnTop(true, 'normal', -1)
-    // Restore click-through
-    win.setIgnoreMouseEvents(true, { forward: true })
-    // Notify renderer
+    // Return to desktop level (behind icons, behind all windows)
+    win.setAlwaysOnTop(false)
     win.webContents.send('screensaver:deactivate')
   }
 }

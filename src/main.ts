@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, screen } from 'electron'
+import { app, BrowserWindow, screen } from 'electron'
 import * as path from 'path'
 import { loadConfig } from './config'
 import { ensureStorageDir } from './storage'
@@ -6,14 +6,6 @@ import { startScheduler } from './scheduler'
 import { ScreensaverController } from './screensaver'
 
 let mainWindow: BrowserWindow | null = null
-
-// IPC: toggle click-through for Pomodoro card region — registered once
-ipcMain.on('window:set-clickable', (_, clickable: unknown) => {
-  if (typeof clickable !== 'boolean') return
-  if (mainWindow) {
-    mainWindow.setIgnoreMouseEvents(!clickable, { forward: true })
-  }
-})
 
 function createWindow(): void {
   const config = loadConfig()
@@ -27,12 +19,14 @@ function createWindow(): void {
     height,
     x,
     y,
+    type: 'desktop',       // True desktop level — behind icons, unfocusable, no input
     frame: false,
     transparent: true,
     hasShadow: false,
     skipTaskbar: true,
     resizable: false,
     movable: false,
+    focusable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -41,11 +35,7 @@ function createWindow(): void {
     },
   })
 
-  // Normal level with negative offset: sits above the desktop wallpaper but below app windows.
-  // Screensaver elevates to 'screen-saver' level on idle.
-  mainWindow.setAlwaysOnTop(true, 'normal', -1)
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true })
-  mainWindow.setIgnoreMouseEvents(true, { forward: true })
 
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'))
 
@@ -61,7 +51,7 @@ function createWindow(): void {
   })
 }
 
-// Hide dock icon — wallpaper app should not appear in the dock
+// Hide dock icon
 app.dock?.hide()
 
 app.whenReady().then(createWindow)
