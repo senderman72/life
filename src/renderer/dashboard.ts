@@ -1,4 +1,5 @@
 import { initClock } from './cards/clock'
+import { initWeather } from './cards/weather'
 
 const disposers: Array<() => void> = []
 
@@ -8,14 +9,10 @@ function init(): void {
     disposers.push(initClock(clockContainer))
   }
 
-  // IPC listener stubs — wired in subsequent phases
-  // window.myday.onWeatherUpdate(...)
-  // window.myday.onCalendarUpdate(...)
-  // window.myday.onStravaUpdate(...)
-  // window.myday.onFootballUpdate(...)
-  // window.myday.onPomodoroTick(...)
-  // window.myday.onScreensaverActivate(...)
-  // window.myday.onScreensaverDeactivate(...)
+  const weatherContainer = document.getElementById('card-weather')
+  if (weatherContainer) {
+    disposers.push(initWeather(weatherContainer))
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init)

@@ -8,9 +8,9 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
       background: transparent;
-      color: #1a1a1a;
+      color: #1d1d1f;
       overflow: hidden;
       width: 100vw;
       height: 100vh;
@@ -21,24 +21,28 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: auto auto auto;
-      gap: 16px;
-      padding: 24px;
+      gap: 25px;
+      padding: 30px;
       position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 50%;
-      max-width: 720px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 65%;
+      max-width: 960px;
       max-height: 100vh;
       overflow-y: auto;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      background: linear-gradient(135deg, rgba(245, 245, 250, 0.97), rgba(235, 235, 245, 0.95));
+      border: 0.5px solid rgba(255, 255, 255, 0.6);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 12px 40px rgba(0, 0, 0, 0.04),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
       transition: opacity 0.3s ease;
     }
 
@@ -48,17 +52,19 @@
     }
 
     .clock-time {
-      font-size: 48px;
+      font-size: 52px;
       font-weight: 200;
-      letter-spacing: -1px;
+      letter-spacing: -1.5px;
       line-height: 1.1;
+      color: #1d1d1f;
     }
 
     .clock-date {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 400;
-      color: #555;
-      margin-top: 4px;
+      color: #86868b;
+      margin-top: 6px;
+      letter-spacing: -0.1px;
     }
 
     /* Weather takes 2 columns */
@@ -89,14 +95,31 @@
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #999;
-      margin-bottom: 8px;
+      letter-spacing: 0.6px;
+      color: #86868b;
+      margin-bottom: 10px;
     }
 
     .card-placeholder {
       font-size: 13px;
-      color: #bbb;
+      color: #aeaeb2;
+    }
+
+    /* Weather card */
+    .weather-main {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .weather-icon { font-size: 30px; }
+    .weather-temp { font-size: 38px; font-weight: 200; letter-spacing: -1px; }
+    .weather-condition { font-size: 14px; color: #6e6e73; margin-top: 4px; }
+    .weather-details, .weather-range, .weather-sun {
+      display: flex;
+      gap: 14px;
+      font-size: 12px;
+      color: #86868b;
+      margin-top: 5px;
     }
 
     /* Screensaver mode */
