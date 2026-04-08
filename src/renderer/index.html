@@ -156,6 +156,39 @@
       padding: 4px 0;
     }
 
+    /* Strava card */
+    .strava-stats {
+      font-size: 14px;
+      color: #1d1d1f;
+      margin-bottom: 10px;
+    }
+    .strava-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .strava-bar {
+      height: 8px;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .strava-bar-last {
+      background: #e5e5ea;
+    }
+    .strava-bar-this {
+      background: #86868b;
+    }
+    .strava-classification {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .strava-comparison {
+      font-size: 11px;
+      color: #86868b;
+      margin-top: 2px;
+    }
+
     /* Screensaver mode */
     body.screensaver-active {
       background: radial-gradient(ellipse at center, rgba(10,10,30,0.85), rgba(0,0,0,0.95));

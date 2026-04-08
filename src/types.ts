@@ -103,7 +103,6 @@ export interface AppConfig {
   readonly strava: {
     readonly clientId: string
     readonly clientSecret: string
-    readonly refreshToken: string
   }
   readonly google: {
     readonly clientId: string

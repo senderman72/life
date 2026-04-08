@@ -6,8 +6,7 @@
   },
   "strava": {
     "clientId": "",
-    "clientSecret": "",
-    "refreshToken": ""
+    "clientSecret": ""
   },
   "google": {
     "clientId": "",

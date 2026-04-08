@@ -1,6 +1,7 @@
 import { initClock } from './cards/clock'
 import { initWeather } from './cards/weather'
 import { initCalendar } from './cards/calendar'
+import { initStrava } from './cards/strava'
 
 const disposers: Array<() => void> = []
 
@@ -18,6 +19,11 @@ function init(): void {
   const calendarContainer = document.getElementById('card-calendar')
   if (calendarContainer) {
     disposers.push(initCalendar(calendarContainer))
+  }
+
+  const stravaContainer = document.getElementById('card-strava')
+  if (stravaContainer) {
+    disposers.push(initStrava(stravaContainer))
   }
 }
 
