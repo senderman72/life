@@ -129,7 +129,7 @@ export interface AppConfig {
     readonly breakMinutes: number
   }
   readonly window: {
-    readonly position: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
+    readonly position: 'center' | 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
     readonly refreshIntervalMinutes: number
   }
   readonly screensaver: ScreensaverConfig

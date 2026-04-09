@@ -14,7 +14,7 @@ const DEFAULT_POMODORO = {
   breakMinutes: 5,
 } as const
 
-const VALID_POSITIONS = new Set(['bottom-left', 'bottom-right', 'top-left', 'top-right'])
+const VALID_POSITIONS = new Set(['center', 'bottom-left', 'bottom-right', 'top-left', 'top-right'])
 
 function validate(parsed: unknown): asserts parsed is Record<string, unknown> {
   if (typeof parsed !== 'object' || parsed === null) {
