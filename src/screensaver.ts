@@ -32,15 +32,11 @@ export class ScreensaverController {
 
   private activate(win: BrowserWindow): void {
     this.isActive = true
-    // Elevate above everything for screensaver mode
-    win.setAlwaysOnTop(true, 'screen-saver')
     win.webContents.send('screensaver:activate')
   }
 
   private deactivate(win: BrowserWindow): void {
     this.isActive = false
-    // Return to desktop level (behind icons, behind all windows)
-    win.setAlwaysOnTop(false)
     win.webContents.send('screensaver:deactivate')
   }
 }
